@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppHotel2.View.ContratacaoHospedagem"
+             BackgroundColor="Black">
+   
+
+        <ContentPage.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="LightPink" Offset="0.1" />
+                <GradientStop Color="Black" Offset="0.6" />
+                <GradientStop Color="LightPink" Offset="1.1" />
+            </LinearGradientBrush>
+        </ContentPage.Background>
+    <ContentPage.Content>
+
+        <StackLayout>
+            <Label Text="Cálculo da Estadia"
+                   HorizontalTextAlignment="Center"
+                   FontSize="Title" TextColor="White"/>
+
+            <Label x:Name="lbl_usuario"
+                   HorizontalTextAlignment="Center"
+                   TextColor="White"/>
+
+            <Frame CornerRadius="10"
+                   BackgroundColor="#eee"
+                   Margin="10, 0, 10, 10"
+                   Padding="20">
+
+                <StackLayout>
+                    <Grid ColumnDefinitions="*, *, 2*"
+                          RowDefinitions="*, *">
+                        <Label Grid.Row="0" Grid.Column="0"
+                               Text="Adultos:"
+                               TextColor="Black"/>
+                        <Label Grid.Row="0" Grid.Column="1"
+                               x:Name="lbl_qnt_adultos"
+                               BindingContext="{x:Reference stepperAdultos}"
+                               Text="{Binding Value}"
+                               TextColor="Black"/>
+                        <Stepper Grid.Row="0" Grid.Column="2"
+                                 x:Name="stepperAdultos"
+                                 Minimum="0" Maximum="10" Increment="1" />
+
+                        <Label Grid.Row="1" Grid.Column="0" 
+                               Text="Crianças:"
+                               TextColor="Black"/>
+                        <Label Grid.Row="1" Grid.Column="1"
+                               x:Name="lbl_qnt_criancas"
+                               BindingContext="{x:Reference stepperCriancas}"
+                               Text="{Binding Value}"
+                               TextColor="Black"/>
+                        <Stepper Grid.Row="1" Grid.Column="2"
+                                 x:Name="stepperCriancas"
+                                 Minimum="0" Maximum="10" Increment="1" />
+                    </Grid>
+
+                    <Label Text="Escolha o seu Quarto:"
+                           TextColor="Black"/>
+                    <Picker x:Name="pck_suite"
+                            ItemDisplayBinding="{Binding Nome}"
+                            Title="Selecione sua Estância:"/>
+
+                    <Frame BackgroundColor="#ddd"
+                           CornerRadius="10" Margin="10">
+                        <StackLayout>
+                            <Label Text="Período da Estadia"
+                                   TextColor="Black"/>
+                            <StackLayout Orientation="Horizontal">
+                            <Label Text="Data do Check-in:" />
+                            <DatePicker x:Name="dtpck_checkin"
+                                            DateSelected="dtpck_checkin_DateSelected"
+                                            Format="dd/MM/yyyy" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Data do Check-out:"/>
+                                <DatePicker x:Name="dtpck_checkout"                                            
+                                            Format="dd/MM/yyyy" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    <Button Text="Calcular o total da estadia:" Clicked="Button_Clicked"/>
+
+                <Button Text="Sair" Clicked="Button_Clicked_1"
+                            TextColor="Black"
+                            BackgroundColor="#CCC" />
+
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
